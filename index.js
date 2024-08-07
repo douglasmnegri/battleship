@@ -6,17 +6,21 @@ class Ship {
   }
 
   hit() {
-    return ++this.numOfHit;
+    this.numOfHit++;
+    this.isSunk();
+    return this.numOfHit;
   }
 
-  isSunk(length = this.length, numOfHit = this.numOfHit, sunk = this.sunk) {
-    return numOfHit == length ? (sunk = true) : (sunk = false);
+  isSunk() {
+    this.sunk = this.numOfHit >= this.length;
+    return this.sunk;
   }
 }
 
 class Gameboard {
   constructor() {
     this.board = this.printBoard();
+    this.ships = [];
   }
 
   printBoard() {
@@ -31,26 +35,56 @@ class Gameboard {
     return gameBoard;
   }
 
-  addShip(length, coordinateX, coordinateY, direction, board = this.board) {
+  addShip(length, coordinateX, coordinateY, direction) {
+    if (
+      (direction.toUpperCase() === "H" &&
+        (coordinateY < 0 || coordinateY + length > 10)) ||
+      (direction.toUpperCase() === "V" &&
+        (coordinateX < 0 || coordinateX + length > 10))
+    ) {
+      throw new Error("Coordinates are out of bounds or ship does not fit");
+    }
+
     const newShip = new Ship(length);
 
-    if (
-      coordinateX > 10 ||
-      coordinateX < 0 ||
-      coordinateY > 10 ||
-      coordinateY < 0
-    ) {
-      throw new Error("Those coordinates are unavailable");
+    for (let i = 0; i < length; i++) {
+      if (
+        (direction.toUpperCase() === "H" &&
+          this.board[coordinateX][coordinateY + i] !== "*") ||
+        (direction.toUpperCase() === "V" &&
+          this.board[coordinateX + i][coordinateY] !== "*")
+      ) {
+        throw new Error("Those coordinates are unavailable");
+      }
     }
 
     for (let i = 0; i < length; i++) {
-      if (direction.toUpperCase() == "H") {
-        board[coordinateX][coordinateY + i] = "S";
-      } else if (direction.toUpperCase() == "V") {
-        board[coordinateX + i][coordinateY] = "S";
+      if (direction.toUpperCase() === "H") {
+        this.board[coordinateX][coordinateY + i] = "S";
+      } else if (direction.toUpperCase() === "V") {
+        this.board[coordinateX + i][coordinateY] = "S";
       }
     }
-    return board;
+
+    this.ships.push(newShip);
+    return this.board;
+  }
+
+  receiveAttack(x, y) {
+    if (this.board[x][y] === "S") {
+      this.board[x][y] = "H";
+
+      for (const ship of this.ships) {
+        if (ship.hit()) {
+          if (ship.isSunk()) {
+            console.log("Enemy ship is sunk");
+          }
+          break;
+        }
+      }
+    } else {
+      this.board[x][y] = "M";
+    }
   }
 
   displayBoard() {
@@ -61,5 +95,14 @@ class Gameboard {
 }
 
 const printGameBoard = new Gameboard();
-printGameBoard.addShip(2, 11, 3, "v");
-printGameBoard.displayBoard();
+printGameBoard.addShip(4, 0, 0, "V");
+
+printGameBoard.addShip(5, 4, 3, "H");
+printGameBoard.addShip(3, 0, 9, "V");
+printGameBoard.addShip(2, 9, 0, "H");
+printGameBoard.addShip(1, 7, 5, "H");
+
+printGameBoard.receiveAttack(0, 0);
+printGameBoard.receiveAttack(1, 0);
+printGameBoard.receiveAttack(2, 0);
+printGameBoard.receiveAttack(3, 0);
