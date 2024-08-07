@@ -82,13 +82,14 @@ class Gameboard {
       for (const ship of this.ships) {
         if (ship.hit()) {
           if (ship.isSunk()) {
-            console.log("Enemy ship is sunk");
+            return "Enemy ship is sunk";
           }
           break;
         }
       }
     } else {
       this.board[x][y] = "M";
+      return this.board;
     }
   }
 
@@ -100,8 +101,6 @@ class Gameboard {
 }
 
 const gameBoard = new Gameboard();
-// gameBoard.addShip(5, 4, 4, "H");
-
 module.exports = {
   gameBoard,
 };
