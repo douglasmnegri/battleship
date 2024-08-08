@@ -1,8 +1,10 @@
 class Ship {
-  constructor(length, numOfHit = 0, sunk = false) {
+  constructor(length, numOfHit = 0, sunk = false, coordinates = []) {
     this.length = length;
     this.numOfHit = numOfHit;
     this.sunk = sunk;
+    this.coordinates = coordinates;
+    this.name = this.shipName(length);
   }
 
   hit() {
@@ -14,6 +16,23 @@ class Ship {
   isSunk() {
     this.sunk = this.numOfHit >= this.length;
     return this.sunk;
+  }
+
+  shipName(length) {
+    switch (length) {
+      case 1:
+        return "Patrol Boat";
+      case 2:
+        return "Destroyer";
+      case 3:
+        return "Submarine";
+      case 4:
+        return "Battleship";
+      case 5:
+        return "Carrier";
+      default:
+        return "Unknown Ship";
+    }
   }
 }
 
@@ -40,7 +59,10 @@ class Gameboard {
     return gameBoard;
   }
 
-  addShip(length, coordinateX, coordinateY, direction) {
+  addShip(coordinateX, coordinateY, direction) {
+    const shipCoordinates = [];
+    const length = 5 - this.ships.length;
+
     if (
       (direction.toUpperCase() === "H" &&
         (coordinateY < 0 || coordinateY + length > 10)) ||
@@ -65,12 +87,15 @@ class Gameboard {
 
     for (let i = 0; i < length; i++) {
       if (direction.toUpperCase() === "H") {
+        shipCoordinates.push([coordinateX, coordinateY + i]);
         this.board[coordinateX][coordinateY + i] = "S";
       } else if (direction.toUpperCase() === "V") {
+        shipCoordinates.push([coordinateX + i, coordinateY]);
         this.board[coordinateX + i][coordinateY] = "S";
       }
     }
 
+    newShip.coordinates = shipCoordinates;
     this.ships.push(newShip);
     return this.board;
   }
@@ -79,18 +104,27 @@ class Gameboard {
     if (this.board[x][y] === "S") {
       this.board[x][y] = "H";
 
-      for (const ship of this.ships) {
-        if (ship.hit()) {
-          if (ship.isSunk()) {
-            return "Enemy ship is sunk";
+      let sunkMessage = null;
+      this.ships.forEach((ship) => {
+        if (
+          ship.coordinates.some((coord) => coord[0] === x && coord[1] === y)
+        ) {
+          ship.hit();
+          if (ship.isSunk() && !ship.sunkReported) {
+            sunkMessage = `Enemy ${ship.name} is sunk`;
+            ship.sunkReported = true;
           }
-          break;
         }
+      });
+
+      if (sunkMessage) {
+        return sunkMessage;
       }
     } else {
       this.board[x][y] = "M";
-      return this.board;
     }
+
+    return this.board;
   }
 
   displayBoard() {
@@ -101,6 +135,7 @@ class Gameboard {
 }
 
 const gameBoard = new Gameboard();
+
 module.exports = {
   gameBoard,
 };
