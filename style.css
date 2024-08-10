@@ -64,7 +64,19 @@ button {
   border: solid black;
 }
 
-.player-content {
+.game-interface {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5em;
+}
+
+#p1,
+#p2 {
+    text-align: center;
+}
+
+.player-content,
+.computer-content {
   border: solid black 3px;
   display: grid;
   grid-template-columns: 1fr 12fr;
@@ -72,12 +84,15 @@ button {
   width: fit-content;
   height: fit-content;
   padding: 1em;
+  margin: 1em;
 }
-#player-board {
+#player-board,
+#computer-board {
   grid-row: 2/3;
   grid-column: 2/3;
   display: flex;
   width: fit-content;
+  border: solid black 1px;
 }
 
 .board-letters {
@@ -87,7 +102,9 @@ button {
   justify-content: space-evenly;
   flex-direction: row;
   text-align: center;
-  gap: 2em;
+  gap: 1.5em;
+  padding-right: 0.3em;
+  font-size: 0.8em;
 }
 
 .board-numbers {
@@ -97,11 +114,12 @@ button {
   justify-content: space-evenly;
   flex-direction: column;
   text-align: center;
-  gap: 1em;
+  gap: 0.5em;
+  font-size: 0.8em;
 }
 
 .coordinate-content {
-  font-size: xx-large;
+  font-size: 1.5em;
   padding-left: 0.8em;
   padding-right: 0.8em;
   border: solid black 1px;

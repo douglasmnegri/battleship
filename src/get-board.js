@@ -1,6 +1,6 @@
 const playerBoard = document.getElementById("player-board");
-
-function printSquares() {
+const computerBoard = document.getElementById("computer-board");
+function printSquares(board) {
   for (let i = 0; i < 10; i++) {
     let row = document.createElement("div");
     for (let j = 0; j < 10; j++) {
@@ -9,8 +9,9 @@ function printSquares() {
       square.textContent = "*";
       row.append(square);
     }
-    playerBoard.append(row);
+    board.append(row);
   }
 }
 
-printSquares();
+printSquares(playerBoard);
+printSquares(computerBoard);

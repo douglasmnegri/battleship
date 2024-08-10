@@ -9,34 +9,71 @@
   </head>
   <body>
     <h1 class="page-title">Battleship Game</h1>
-    <div class="player-content">
-      <ul class="board-letters">
-        <li>A</li>
-        <li>B</li>
-        <li>C</li>
-        <li>D</li>
-        <li>E</li>
-        <li>F</li>
-        <li>G</li>
-        <li>H</li>
-        <li>J</li>
-        <li>K</li>
-      </ul>
-      <ul class="board-numbers">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-      </ul>
-      <div id="player-board"></div>
+
+    <div class="game-interface">
+      <div class="board-container">
+        <h2 id="p1">Player's Board</h2>
+        <div class="player-content">
+          <ul class="board-letters">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+            <li>F</li>
+            <li>G</li>
+            <li>H</li>
+            <li>J</li>
+            <li>K</li>
+          </ul>
+          <ul class="board-numbers">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+          </ul>
+          <div id="player-board"></div>
+        </div>
+      </div>
+      <div class="board-container">
+        <h2 id="p2">Computer's Board</h2>
+          <div class="computer-content">
+            <ul class="board-letters">
+              <li>A</li>
+              <li>B</li>
+              <li>C</li>
+              <li>D</li>
+              <li>E</li>
+              <li>F</li>
+              <li>G</li>
+              <li>H</li>
+              <li>J</li>
+              <li>K</li>
+            </ul>
+            <ul class="board-numbers">
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+            </ul>
+            <div id="computer-board"></div>
+          </div>
+      </div>
     </div>
 
+    <div id="computer-board"></div>
     <script src="src/get-board.js"></script>
   </body>
 </html>
