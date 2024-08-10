@@ -163,9 +163,6 @@ class Player {
     return computerBoard.board;
   }
 }
-
 const gameBoard = new Gameboard();
-module.exports = {
-  gameBoard,
-};
- 
+const player = new Player();
+export { gameBoard, player };
