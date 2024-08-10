@@ -124,6 +124,8 @@ class Gameboard {
       this.board[x][y] = "M";
     }
 
+    console.log("HIT MAP");
+    this.displayBoard();
     return this.board;
   }
 
@@ -134,7 +136,54 @@ class Gameboard {
   }
 }
 
+class Player {
+  constructor() {
+    this.player = new Gameboard();
+    this.computer = new Gameboard();
+  }
+
+  printPlayerBoard(playerBoard = this.player) {
+    playerBoard.addShip(1, 1, "V");
+    playerBoard.addShip(5, 5, "H");
+    playerBoard.addShip(6, 9, "V");
+    playerBoard.addShip(8, 0, "H");
+    playerBoard.addShip(8, 6, "H");
+
+    // console.log("\n\n Player Board");
+    // playerBoard.displayBoard();
+    // console.log(playerBoard.ships);
+    return playerBoard.board;
+  }
+
+  printComputerBoard(computerBoard = this.computer) {
+    while (computerBoard.ships.length < 5) {
+      try {
+        const x = Math.floor(Math.random() * 11);
+        const y = Math.floor(Math.random() * 11);
+        const direction = Math.floor(Math.random() * 2) > 0 ? "H" : "V";
+        computerBoard.addShip(x, y, direction);
+      } catch (error) {}
+    }
+
+    // console.log("\n\n Computer Board");
+    // computerBoard.displayBoard();
+    return computerBoard.board;
+  }
+
+  attackBoard() {
+    const board = this.player ? this.computer : this.player;
+    console.log("BOARD TEST");
+    return board.displayBoard();
+  }
+}
+
 const gameBoard = new Gameboard();
+
+const player = new Player();
+player.printPlayerBoard();
+player.printComputerBoard();
+player.attackBoard();
+player.attackBoard();
 
 module.exports = {
   gameBoard,
