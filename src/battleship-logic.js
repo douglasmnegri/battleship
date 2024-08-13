@@ -101,6 +101,10 @@ class Gameboard {
   }
 
   receiveAttack(x, y) {
+    if(this.board[x][y] == "H" || this.board[x][y] == "M") {
+      console.log("This coordinate has been targeted already");
+      return;
+    }
     if (this.board[x][y] === "S") {
       this.board[x][y] = "H";
 
@@ -110,9 +114,11 @@ class Gameboard {
           ship.coordinates.some((coord) => coord[0] === x && coord[1] === y)
         ) {
           ship.hit();
+          console.log(ship);
           if (ship.isSunk() && !ship.sunkReported) {
             sunkMessage = `Enemy ${ship.name} is sunk`;
             ship.sunkReported = true;
+            alert(sunkMessage);
           }
         }
       });
@@ -127,10 +133,21 @@ class Gameboard {
     return this.board;
   }
 
-  displayBoard() {
-    this.board.forEach((row) => {
-      console.log(row.join(" "));
-    });
+  computerAttack() {
+    let x, y;
+    do {
+      x = Math.floor(Math.random() * 10);
+      y = Math.floor(Math.random() * 10);
+    } while (
+      this.board[x][y] === "H" ||
+      this.board[x][y] === "M"
+    );
+
+    const result = this.receiveAttack(x, y);
+    console.log(`Computer attacked at coordinates: ${x}, ${y}`);
+    if (typeof result === "string") {
+      console.log(result);
+    }
   }
 }
 

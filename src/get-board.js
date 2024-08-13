@@ -16,40 +16,37 @@ function printSquares(board, content) {
     for (let j = 0; j < content[i].length; j++) {
       let square = document.createElement("div");
       square.classList.add("coordinate-content");
-      square.textContent = content[i][j];
+      square.textContent = content[j][i];
       row.append(square);
     }
     board.append(row);
   }
 }
 
-function getValue() {
+function attack() {
   submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
     const input = coordinatesInput.value.trim().split(",");
 
     if (input.length === 2) {
+      console.log(input);
       const x = parseInt(input[0].trim());
       const y = parseInt(input[1].trim());
 
       if (!isNaN(x) && !isNaN(y)) {
-        const result = player.computer.receiveAttack(x, y);
-        console.log(`Attacking computer at coordinates: ${x}, ${y}`);
-        console.log(result ? "Hit!" : "Miss!");
-
+        player.computer.receiveAttack(x, y);
+        player.player.computerAttack();
         printSquares(playerBoard, player.printPlayerBoard());
         printSquares(computerBoard, player.printComputerBoard());
       } else {
         console.error("Invalid coordinates");
       }
-    } else {
-      console.error("Please enter coordinates in the format: x,y");
     }
 
-    coordinatesInput.value = ""; // Reset the input field
+    coordinatesInput.value = "";
   });
 }
 
 printSquares(playerBoard, playerBoardContent);
 printSquares(computerBoard, computerBoardContent);
-getValue();
+attack();
