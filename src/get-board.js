@@ -24,27 +24,33 @@ function printSquares(board, content) {
 }
 
 function attack() {
-  submitBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    const input = coordinatesInput.value.trim().split(",");
+  function bindAttackEvents() {
+    const rows = document.querySelectorAll("#computer-board > .board-row");
 
-    if (input.length === 2) {
-      console.log(input);
-      const x = parseInt(input[0].trim());
-      const y = parseInt(input[1].trim());
+    rows.forEach((row, rowIndex) => {
+      const squaresInRow = row.querySelectorAll(".coordinate-content");
+      squaresInRow.forEach((square, colIndex) => {
+        square.addEventListener("click", (event) => {
+          event.preventDefault();
 
-      if (!isNaN(x) && !isNaN(y)) {
-        player.computer.receiveAttack(x, y);
-        player.player.computerAttack();
-        printSquares(playerBoard, player.printPlayerBoard());
-        printSquares(computerBoard, player.printComputerBoard());
-      } else {
-        console.error("Invalid coordinates");
-      }
-    }
+          const x = parseInt(colIndex);
+          const y = parseInt(rowIndex);
 
-    coordinatesInput.value = "";
-  });
+          player.computer.receiveAttack(x, y);
+          player.player.computerAttack();
+          updateBoards(); 
+        });
+      });
+    });
+  }
+
+  function updateBoards() {
+    printSquares(playerBoard, player.printPlayerBoard());
+    printSquares(computerBoard, player.printComputerBoard());
+    bindAttackEvents();
+  }
+
+  updateBoards();
 }
 
 printSquares(playerBoard, playerBoardContent);
