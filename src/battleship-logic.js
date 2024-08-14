@@ -142,17 +142,6 @@ class Gameboard {
 
     const result = this.receiveAttack(x, y);
     console.log(`Computer attacked at coordinates: ${x}, ${y}`);
-    if (typeof result === "string") {
-      console.log(result);
-    }
-  }
-
-  gameOver() {
-    if(this.ships.every(ship => ship.sunk)) {
-      console.log("Game Over");
-      return true;
-    }
-    return false;
   }
 }
 
@@ -184,7 +173,26 @@ class Player {
     }
     return computerBoard.board;
   }
+
+  gameOver() {
+    if (this.player.ships.every((ship) => ship.sunk)) {
+      alert("Player lost! Game over.");
+      return true;
+    } else if (this.computer.ships.every((ship) => ship.sunk)) {
+      alert("Computer lost! Game over.");
+      return true;
+    }
+    return false;
+  }
+
+  resetGame() {
+    this.player.resetBoard();
+    this.printPlayerBoard();
+    this.computer.resetBoard();
+    this.printComputerBoard();
+  }
 }
+
 const gameBoard = new Gameboard();
 const player = new Player();
 

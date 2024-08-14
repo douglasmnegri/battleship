@@ -37,8 +37,13 @@ function attack() {
           const y = parseInt(rowIndex);
 
           player.computer.receiveAttack(x, y);
+          updateBoards();
+          
+
           player.player.computerAttack();
-          updateBoards(); 
+          updateBoards();
+          if (player.gameOver()) return; 
+          if (player.gameOver()) return; 
         });
       });
     });
@@ -47,7 +52,11 @@ function attack() {
   function updateBoards() {
     printSquares(playerBoard, player.printPlayerBoard());
     printSquares(computerBoard, player.printComputerBoard());
-    bindAttackEvents();
+    if (player.gameOver()) {
+      player.resetGame(); 
+    } else {
+      bindAttackEvents(); 
+    }
   }
 
   updateBoards();
