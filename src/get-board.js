@@ -16,7 +16,9 @@ function printSquares(board, content) {
     for (let j = 0; j < content[i].length; j++) {
       let square = document.createElement("div");
       square.classList.add("coordinate-content");
-      square.textContent = content[j][i];
+      square.textContent = content[i][j];
+      square.dataset.row = i;
+      square.dataset.col = j;
       row.append(square);
     }
     board.append(row);
@@ -24,42 +26,28 @@ function printSquares(board, content) {
 }
 
 function attack() {
-  function bindAttackEvents() {
-    const rows = document.querySelectorAll("#computer-board > .board-row");
+  function handleAttack(event) {
+    if (event.target.classList.contains("coordinate-content")) {
+      const x = parseInt(event.target.dataset.row);
+      const y = parseInt(event.target.dataset.col);
 
-    rows.forEach((row, rowIndex) => {
-      const squaresInRow = row.querySelectorAll(".coordinate-content");
-      squaresInRow.forEach((square, colIndex) => {
-        square.addEventListener("click", (event) => {
-          event.preventDefault();
+      player.computer.receiveAttack(x, y);
 
-          const x = parseInt(colIndex);
-          const y = parseInt(rowIndex);
+      if (player.gameOver()) {
+        player.resetGame();
+        printSquares(playerBoard, player.printPlayerBoard());
+        printSquares(computerBoard, player.printComputerBoard());
+        return;
+      }
 
-          player.computer.receiveAttack(x, y);
-          updateBoards();
-          
+      player.player.computerAttack();
 
-          player.player.computerAttack();
-          updateBoards();
-          if (player.gameOver()) return; 
-          if (player.gameOver()) return; 
-        });
-      });
-    });
-  }
-
-  function updateBoards() {
-    printSquares(playerBoard, player.printPlayerBoard());
-    printSquares(computerBoard, player.printComputerBoard());
-    if (player.gameOver()) {
-      player.resetGame(); 
-    } else {
-      bindAttackEvents(); 
+      printSquares(playerBoard, player.printPlayerBoard());
+      printSquares(computerBoard, player.printComputerBoard());
     }
   }
 
-  updateBoards();
+  computerBoard.addEventListener("click", handleAttack);
 }
 
 printSquares(playerBoard, playerBoardContent);
