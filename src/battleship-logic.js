@@ -103,7 +103,7 @@ class Gameboard {
   receiveAttack(x, y) {
     if (this.board[x][y] == "H" || this.board[x][y] == "M") {
       console.log("This coordinate has been targeted already");
-      return;
+      return false;
     }
     if (this.board[x][y] === "S") {
       this.board[x][y] = "H";

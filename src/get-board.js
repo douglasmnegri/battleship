@@ -5,8 +5,7 @@ const computerBoardContent = player.printComputerBoard();
 
 const playerBoard = document.getElementById("player-board");
 const computerBoard = document.getElementById("computer-board");
-const submitBtn = document.getElementById("submit-btn");
-const coordinatesInput = document.getElementById("attack-coordinates");
+const hudMessage = document.getElementById("hud-interface");
 
 function printSquares(board, content) {
   board.innerHTML = "";
@@ -31,7 +30,12 @@ function attack() {
       const x = parseInt(event.target.dataset.row);
       const y = parseInt(event.target.dataset.col);
 
-      player.computer.receiveAttack(x, y);
+      if (!player.computer.receiveAttack(x, y)) {
+        hudMessage.textContent = "You've targeted this coordinate before. Try again!"
+        return;
+      }
+
+      computerBoard.classList.add("disable-pointer-events");
 
       if (player.gameOver()) {
         player.resetGame();
@@ -42,7 +46,16 @@ function attack() {
 
       player.player.computerAttack();
 
-      printSquares(playerBoard, player.printPlayerBoard());
+      hudMessage.textContent =
+        "Opponent's turn. He's shooting into your position!";
+
+      setTimeout(() => {
+        printSquares(playerBoard, player.printPlayerBoard());
+        hudMessage.textContent = "It's your turn. Shoot the enemy waters!";
+
+        computerBoard.classList.remove("disable-pointer-events");
+      }, 2000);
+
       printSquares(computerBoard, player.printComputerBoard());
     }
   }

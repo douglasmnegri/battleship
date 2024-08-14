@@ -123,4 +123,19 @@ button {
   padding-left: 0.8em;
   padding-right: 0.8em;
   border: solid black 1px;
+  cursor: pointer;
+  
+}
+
+#hud-interface {
+  text-align: center;
+  font-size: large;
+  border: solid black;
+  width: fit-content;
+  padding: 1em;
+  margin: 0 auto;
+}
+
+.disable-pointer-events {
+  pointer-events: none;
 }
