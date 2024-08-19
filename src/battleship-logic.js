@@ -69,7 +69,8 @@ class Gameboard {
       (direction.toUpperCase() === "V" &&
         (coordinateX < 0 || coordinateX + length > 10))
     ) {
-      return "Coordinates are out of bounds or ship does not fit";
+      console.log("Coordinates are out of bounds or ship does not fit");
+      return;
     }
 
     const newShip = new Ship(length);
@@ -81,7 +82,8 @@ class Gameboard {
         (direction.toUpperCase() === "V" &&
           this.board[coordinateX + i][coordinateY] !== "*")
       ) {
-        return "Those coordinates are unavailable";
+        console.log("Those coordinates are unavailable");
+        return;
       }
     }
 
@@ -151,13 +153,12 @@ class Player {
     this.computer = new Gameboard();
   }
 
-  printPlayerBoard(playerBoard = this.player) {
-    playerBoard.addShip(1, 1, "V");
-    playerBoard.addShip(5, 5, "H");
-    playerBoard.addShip(6, 9, "V");
-    playerBoard.addShip(8, 0, "H");
-    playerBoard.addShip(8, 6, "H");
-    return playerBoard.board;
+  printPlayerBoard(x, y, playerBoard = this.player) {
+    if (x !== undefined && y !== undefined) {
+      return playerBoard.addShip(x, y, "V");
+    } else {
+      return playerBoard.printBoard();
+    }
   }
 
   printComputerBoard(computerBoard = this.computer) {
