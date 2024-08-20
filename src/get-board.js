@@ -1,29 +1,41 @@
 import { player } from "./battleship-logic.js";
 
-// const playerBoardContent = player.printPlayerBoard();
 const computerBoardContent = player.printComputerBoard();
-
 const playerBoard = document.getElementById("player-board");
 const computerBoard = document.getElementById("computer-board");
 const hudMessage = document.getElementById("hud-interface");
 const submitBtn = document.getElementById("submit-btn");
-const attackCoordinates = document.getElementById("attack-coordinates");
-// print both boards with *;
-// invoke addShip() func 5 times to place all ships;
-// after that we should call printSquares with the computer's board;
+const shipCoordinates = document.getElementById("ship-coordinates");
+const shipDirection = document.getElementById("ship-direction");
+
+// after placing the fifth ship, we should call the printSquares(computerBoard, computerBoardContent)
+// initialize the game
 
 function getCoordinates() {
   submitBtn.addEventListener("click", (e) => {
+    if (!shipCoordinates.checkValidity() || !shipDirection.checkValidity()) {
+      return;
+    }
+
     e.preventDefault();
-    const clearInput = attackCoordinates.value.split(",");
-    const x = Number(clearInput[0]);
-    const y = Number(clearInput[1]);
-    const playerBoardContent = player.printPlayerBoard(x, y);
+    const coordinateValue = shipCoordinates.value.split(",");
+    const directionValue = shipDirection.value;
+
+    const x = Number(coordinateValue[1]);
+    const y = Number(coordinateValue[0]);
+    const playerBoardContent = player.printPlayerBoard(x, y, directionValue);
     if (playerBoardContent == undefined) {
       return alert("Those coordinates are unavailable");
     } else {
       printSquares(playerBoard, playerBoardContent);
     }
+
+    // remove this statement after creating the menu for placing ships
+    if (!printSquares(computerBoard, computerBoardContent)) {
+      printSquares(computerBoard, computerBoardContent);
+    }
+    shipCoordinates.value = "";
+    shipDirection.value = "";
   });
 }
 function printSquares(board, content) {
@@ -34,7 +46,7 @@ function printSquares(board, content) {
     for (let j = 0; j < content[i].length; j++) {
       let square = document.createElement("div");
       square.classList.add("coordinate-content");
-      square.textContent = content[i][j]; // Ensure this is getting the correct value
+      square.textContent = content[i][j];
       square.dataset.row = i;
       square.dataset.col = j;
       row.append(square);
@@ -74,7 +86,7 @@ function attack() {
         hudMessage.textContent = "It's your turn. Shoot the enemy waters!";
 
         computerBoard.classList.remove("disable-pointer-events");
-      }, 2000);
+      }, 2);
 
       printSquares(computerBoard, player.printComputerBoard());
     }
@@ -83,7 +95,5 @@ function attack() {
   computerBoard.addEventListener("click", handleAttack);
 }
 
-// printSquares(playerBoard, playerBoardContent);
 getCoordinates();
 attack();
-// printSquares(computerBoard, computerBoardContent);

@@ -8,20 +8,32 @@
   </head>
   <body>
     <h1 class="page-title">Battleship Game</h1>
-    
+<!-- 
+  create a front page menu that will print empty squares on player board
+  allow the player to place ships inside the board
+  after placing the fifth ship, remove the menu
+  remove the input from the ui where the game's being played
+  -->
     <div id="hud-interface">It's your turn. Shoot the enemy waters!</div>
-
     <div class="game-interface">
       <div class="board-container">
         <h2 id="p1">Player's Board</h2>
-        <form action="attack">
-          <label for="attack-coordinates">Coordinates</label>
+        <form action="placement">
+          <label for="ship-coordinates">Coordinates</label>
           <input
             type="text"
-            name="attack-coordinates"
-            id="attack-coordinates"
+            name="ship-coordinates"
+            id="ship-coordinates"
+            required
           />
-          <input type="submit" value="Submit" id="submit-btn"/>
+          <label for="ship-direction">Direction</label>
+          <input
+            type="text"
+            name="ship-direction"
+            id="ship-direction"
+            required
+          />
+          <input type="submit" value="Submit" id="submit-btn" />
         </form>
         <div class="player-content">
           <ul class="board-letters">
@@ -54,14 +66,21 @@
       <div class="board-container">
         <h2 id="p2">Computer's Board</h2>
         <form action="attack">
-          <label for="attack-coordinates">Coordinates</label>
+          <label for="ship-coordinates">Coordinates</label>
           <input
             type="text"
-            name="attack-coordinates"
-            id="attack-coordinates"
+            name="ship-coordinates"
+            id="ship-coordinates"
             disabled
           />
-          <input type="submit" value="Submit" disabled/>
+          <label for="ship-direction">Direction</label>
+          <input
+            type="text"
+            name="ship-direction"
+            id="ship-direction"
+            disabled
+          />
+          <input type="submit" value="Submit" disabled />
         </form>
         <div class="computer-content">
           <ul class="board-letters">

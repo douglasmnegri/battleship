@@ -153,11 +153,11 @@ class Player {
     this.computer = new Gameboard();
   }
 
-  printPlayerBoard(x, y, playerBoard = this.player) {
+  printPlayerBoard(x, y, direction, playerBoard = this.player) {
     if (x !== undefined && y !== undefined) {
-      return playerBoard.addShip(x, y, "V");
+      return playerBoard.addShip(x, y, direction);
     } else {
-      return playerBoard.printBoard();
+      return playerBoard.board;
     }
   }
 

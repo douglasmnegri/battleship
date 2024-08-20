@@ -139,3 +139,9 @@ button {
 .disable-pointer-events {
   pointer-events: none;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 5em;
+}
