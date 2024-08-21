@@ -226,3 +226,7 @@ button {
   justify-content: center;
   font-size: large;
 }
+
+.color {
+  background-color: green;
+}
