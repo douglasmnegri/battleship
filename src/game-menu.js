@@ -1,16 +1,18 @@
+import { printPlayerBoard } from "./get-board.js";
 const joinBattle = document.querySelector(".join-battle");
-const gameInterface = document.querySelector(".game-interface");
-const hudInteface = document.getElementById("hud-interface");
 const menu = document.querySelector(".menu");
 const playersName = document.getElementById("name");
+const computerBoardMenu = document.querySelector(".computer-board-menu");
+const playerBoardMenu = document.querySelector(".player-board-menu");
+const p1 = document.getElementById("p1");
 
 function getPlayerName() {
   joinBattle.addEventListener("click", (e) => {
     e.preventDefault();
-    gameInterface.style.visibility = "visible";
-    hudInteface.style.visibility = "visible";
+    playerBoardMenu.style.visibility = "visible";
     menu.style.visibility = "hidden";
-    console.log(playersName.value);
+    p1.textContent = `Captain ${playersName.value} Battleship's`;
+    printPlayerBoard();
   });
 }
 

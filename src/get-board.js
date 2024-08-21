@@ -11,6 +11,11 @@ const shipDirection = document.getElementById("ship-direction");
 // after placing the fifth ship, we should call the printSquares(computerBoard, computerBoardContent)
 // initialize the game
 
+function printPlayerBoard() {
+  const initialBoard = player.player.board;
+  return printSquares(playerBoard, initialBoard);
+}
+
 function getCoordinates() {
   submitBtn.addEventListener("click", (e) => {
     if (!shipCoordinates.checkValidity() || !shipDirection.checkValidity()) {
@@ -23,21 +28,30 @@ function getCoordinates() {
 
     const x = Number(coordinateValue[1]);
     const y = Number(coordinateValue[0]);
-    const playerBoardContent = player.printPlayerBoard(x, y, directionValue);
-    if (playerBoardContent == undefined) {
-      return alert("Those coordinates are unavailable");
-    } else {
-      printSquares(playerBoard, playerBoardContent);
-    }
-
-    // remove this statement after creating the menu for placing ships
-    if (!printSquares(computerBoard, computerBoardContent)) {
-      printSquares(computerBoard, computerBoardContent);
-    }
+    printShipInsideBoard(x, y, directionValue);
     shipCoordinates.value = "";
     shipDirection.value = "";
   });
 }
+
+function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
+  const playerBoardContent = player.printPlayerBoard(
+    coordinateX,
+    coordinateY,
+    shipDirection
+  );
+  if (playerBoardContent == undefined) {
+    return alert("Those coordinates are unavailable");
+  } else {
+    printSquares(playerBoard, playerBoardContent);
+  }
+
+  // remove this statement after creating the menu for placing ships
+  if (!printSquares(computerBoard, computerBoardContent)) {
+    printSquares(computerBoard, computerBoardContent);
+  }
+}
+
 function printSquares(board, content) {
   board.innerHTML = "";
   for (let i = 0; i < content.length; i++) {
@@ -95,5 +109,8 @@ function attack() {
   computerBoard.addEventListener("click", handleAttack);
 }
 
+printPlayerBoard();
 getCoordinates();
 attack();
+
+export { printPlayerBoard, printShipInsideBoard };

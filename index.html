@@ -17,15 +17,20 @@
       <h1>BATTLESHIP</h1>
       <div class="get-name">
         <form action="get-player-name">
-          <input type="text" name="name" id="name" placeholder="Captain's Name"/>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Captain's Name"
+          />
           <button type="submit" class="join-battle">Enter Battle</button>
         </form>
       </div>
     </div>
     <div id="hud-interface">It's your turn. Shoot the enemy waters!</div>
     <div class="game-interface">
-      <div class="board-container">
-        <h2 id="p1">Player's Board</h2>
+      <div class="board-container player-board-menu">
+        <h2 id="p1">Player's board</h2>
         <form action="placement">
           <label for="ship-coordinates">Coordinates</label>
           <input
@@ -71,7 +76,7 @@
           <div id="player-board"></div>
         </div>
       </div>
-      <div class="board-container">
+      <div class="board-container computer-board-menu">
         <h2 id="p2">Computer's Board</h2>
         <form action="attack">
           <label for="ship-coordinates">Coordinates</label>
@@ -123,6 +128,6 @@
     <div id="computer-board"></div>
     <script type="module" src="src/get-board.js"></script>
     <script type="module" src="src/game-menu.js"></script>
-
+    <script type="module" src="src/place-ships.js"></script>
   </body>
 </html>
