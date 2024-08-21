@@ -16,23 +16,6 @@ function printPlayerBoard() {
   return printSquares(playerBoard, initialBoard);
 }
 
-function getCoordinates() {
-  submitBtn.addEventListener("click", (e) => {
-    if (!shipCoordinates.checkValidity() || !shipDirection.checkValidity()) {
-      return;
-    }
-
-    e.preventDefault();
-    const coordinateValue = shipCoordinates.value.split(",");
-    const directionValue = shipDirection.value;
-
-    const x = Number(coordinateValue[1]);
-    const y = Number(coordinateValue[0]);
-    printShipInsideBoard(x, y, directionValue);
-    shipCoordinates.value = "";
-    shipDirection.value = "";
-  });
-}
 
 function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
   const playerBoardContent = player.printPlayerBoard(
@@ -110,7 +93,6 @@ function attack() {
 }
 
 printPlayerBoard();
-getCoordinates();
 attack();
 
 export { printPlayerBoard, printShipInsideBoard };
