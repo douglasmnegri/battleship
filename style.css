@@ -86,6 +86,7 @@ button {
   padding: 1em;
   margin: 1em;
 }
+
 #player-board,
 #computer-board {
   grid-row: 2/3;
@@ -149,7 +150,7 @@ button {
   left: 35%;
   width: 30%;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  visibility: hidden;
+  visibility: visible;
 }
 
 .menu h1 {
@@ -193,6 +194,10 @@ button {
   color: #f2f2f2;
 }
 
+.player-board-menu {
+  position: absolute;
+}
+
 .join-battle {
   width: 80%;
   padding: 10px 0;
@@ -215,11 +220,6 @@ button {
   transform: scale(0.95);
 }
 
-.computer-board-menu,
-.player-board-menu {
-  visibility: visible;
-}
-
 .axis-container,
 #axis {
   display: flex;
@@ -230,3 +230,9 @@ button {
 .color {
   background-color: green;
 }
+
+.computer-board-menu,
+.player-board-menu {
+  visibility: hidden;
+}
+

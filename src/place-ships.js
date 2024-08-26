@@ -1,10 +1,12 @@
 import { printShipInsideBoard } from "./get-board.js";
+import { initializeGame } from "./game-menu.js";
+
 
 const playerBoard = document.getElementById("player-board");
 
 function getShipsCoordinates() {
   let axisDirection = "v";
-  const shipLength = 5;
+  let shipLength = 5;
 
   function setupAxisToggle() {
     const axisButton = document.getElementById("axis");
@@ -26,6 +28,10 @@ function getShipsCoordinates() {
         const y = parseInt(e.target.dataset.col);
 
         printShipInsideBoard(x, y, axisDirection);
+        shipLength--;
+        if(shipLength == 0) {
+          initializeGame();
+        }
       }
     }
     playerBoard.addEventListener("click", getBoardCoordinates);
@@ -85,7 +91,4 @@ function getShipsCoordinates() {
 
 getShipsCoordinates();
 
-// Add a function that receives a string that determines the axis of the battleship (check)
-// Substitute the "v" on printShipInsideBoard(x, y, "v") to the variable retrieved from the last function (check)
-// Create a function that will hover over the squares that the ship will be placed
-// By hovering over the board, we can then implement drag and drop
+

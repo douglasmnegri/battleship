@@ -11,9 +11,16 @@ function getPlayerName() {
     e.preventDefault();
     playerBoardMenu.style.visibility = "visible";
     menu.style.visibility = "hidden";
-    p1.textContent = `Captain ${playersName.value} Battleship's`;
+    p1.textContent = `Captain ${playersName.value}'s Position`;
     printPlayerBoard();
   });
 }
 
+function initializeGame() {
+  computerBoardMenu.style.visibility = "visible";
+  playerBoardMenu.style.position = "inherit";
+}
+
 getPlayerName();
+
+export { initializeGame };

@@ -8,8 +8,9 @@ const submitBtn = document.getElementById("submit-btn");
 const shipCoordinates = document.getElementById("ship-coordinates");
 const shipDirection = document.getElementById("ship-direction");
 
-// after placing the fifth ship, we should call the printSquares(computerBoard, computerBoardContent)
-// initialize the game
+// After we get the placement for each ship, we need to start the game by printing both boards
+// The way you print the same board twice, is by storing the content inside the variable playerBoardContent
+// We've done the tests with computerBoardContent and it worked fine, we just need to invoke the function printSquares();
 
 function printPlayerBoard() {
   const initialBoard = player.player.board;
@@ -29,7 +30,7 @@ function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
     printSquares(playerBoard, playerBoardContent);
   }
 
-  // remove this statement after creating the menu for placing ships
+  // 
   if (!printSquares(computerBoard, computerBoardContent)) {
     printSquares(computerBoard, computerBoardContent);
   }

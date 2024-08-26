@@ -7,9 +7,17 @@
     <title>Battleship Board Game</title>
   </head>
   <body>
-    <!-- Remove the inputs that receives coordinates (check)-->
-    <!-- Add a button to choose the axis of the battleship (check) -->
-    <!-- Create a menu at the right side of the player's board. It should contain 5 ships with different length -->
+
+    <!-- First thing we need to do is an UI for placing ships -->
+    <!-- Initially, it should offer tha player to place ships by length (5, 4, 3...) -->
+    <!-- Axis button should be inside this UI -->
+    <!-- This new div will receive the information about the placement, and then we we'll start the game -->
+    <!-- STEP BY STEP:
+        1- CREATE A MENU USING PLAYER'S BOARD
+        2- CREATE AN UI FOR ADDING SHIPS
+        3- DISPLAY THE COMPUTER'S BOARD AFTER FINISHING
+        -->
+   
     <div class="menu">
       <h1>BATTLESHIP</h1>
       <div class="get-name">
@@ -27,7 +35,7 @@
     <div id="hud-interface">It's your turn. Shoot the enemy waters!</div>
     <div class="game-interface">
       <div class="board-container player-board-menu">
-        <h2 id="p1">Player's board</h2>
+        <h2 id="p1">Player's Position</h2>
         <div class="player-content">
           <ul class="board-letters">
             <li>A</li>
@@ -89,6 +97,8 @@
           <div id="computer-board"></div>
         </div>
       </div>
+
+      
     </div>
 
     <div id="computer-board"></div>
