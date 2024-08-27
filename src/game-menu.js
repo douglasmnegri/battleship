@@ -5,22 +5,23 @@ const playersName = document.getElementById("name");
 const computerBoardMenu = document.querySelector(".computer-board-menu");
 const playerBoardMenu = document.querySelector(".player-board-menu");
 const p1 = document.getElementById("p1");
+const placementMenu = document.querySelector(".placing-ships-menu");
 
-function getPlayerName() {
-  joinBattle.addEventListener("click", (e) => {
-    e.preventDefault();
-    playerBoardMenu.style.visibility = "visible";
-    menu.style.visibility = "hidden";
-    p1.textContent = `Captain ${playersName.value}'s Position`;
-    printPlayerBoard();
-  });
-}
+// function getPlayerName() {
+//   joinBattle.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     playerBoardMenu.style.visibility = "visible";
+//     menu.style.visibility = "hidden";
+//     p1.textContent = `Captain ${playersName.value}'s Position`;
+//     printPlayerBoard();
+//   });
+// }
 
-function initializeGame() {
-  computerBoardMenu.style.visibility = "visible";
-  playerBoardMenu.style.position = "inherit";
-}
+// function initializeGame() {
+//   computerBoardMenu.style.visibility = "visible";
+//   playerBoardMenu.style.position = "inherit";
+// }
 
-getPlayerName();
+// getPlayerName();
 
-export { initializeGame };
+// export { initializeGame };

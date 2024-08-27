@@ -8,15 +8,12 @@ const submitBtn = document.getElementById("submit-btn");
 const shipCoordinates = document.getElementById("ship-coordinates");
 const shipDirection = document.getElementById("ship-direction");
 
-// After we get the placement for each ship, we need to start the game by printing both boards
-// The way you print the same board twice, is by storing the content inside the variable playerBoardContent
-// We've done the tests with computerBoardContent and it worked fine, we just need to invoke the function printSquares();
+// Refactor the the printSquares() function so it's less verbose
 
 function printPlayerBoard() {
   const initialBoard = player.player.board;
-  return printSquares(playerBoard, initialBoard);
+  return printSquares(playerBoard, initialBoard, "player");
 }
-
 
 function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
   const playerBoardContent = player.printPlayerBoard(
@@ -27,16 +24,15 @@ function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
   if (playerBoardContent == undefined) {
     return alert("Those coordinates are unavailable");
   } else {
-    printSquares(playerBoard, playerBoardContent);
+    printSquares(playerBoard, playerBoardContent, "player");
   }
 
-  // 
   if (!printSquares(computerBoard, computerBoardContent)) {
-    printSquares(computerBoard, computerBoardContent);
+    printSquares(computerBoard, computerBoardContent, "computer");
   }
 }
 
-function printSquares(board, content) {
+function printSquares(board, content, player) {
   board.innerHTML = "";
   for (let i = 0; i < content.length; i++) {
     let row = document.createElement("div");
@@ -44,7 +40,17 @@ function printSquares(board, content) {
     for (let j = 0; j < content[i].length; j++) {
       let square = document.createElement("div");
       square.classList.add("coordinate-content");
-      square.textContent = content[i][j];
+      if (player == "computer") {
+        if (content[i][j] == "H" || content[i][j] == "M") {
+          square.textContent = content[i][j];
+        } else {
+          square.textContent = "*";
+        }
+      }
+
+      if (player == "player") {
+        square.textContent = content[i][j];
+      }
       square.dataset.row = i;
       square.dataset.col = j;
       row.append(square);
@@ -69,8 +75,8 @@ function attack() {
 
       if (player.gameOver()) {
         player.resetGame();
-        printSquares(playerBoard, player.printPlayerBoard());
-        printSquares(computerBoard, player.printComputerBoard());
+        printSquares(playerBoard, player.printPlayerBoard(), "player");
+        printSquares(computerBoard, player.printComputerBoard(), "computer");
         return;
       }
 
@@ -80,13 +86,13 @@ function attack() {
         "Opponent's turn. He's shooting into your position!";
 
       setTimeout(() => {
-        printSquares(playerBoard, player.printPlayerBoard());
+        printSquares(playerBoard, player.printPlayerBoard(), "player");
         hudMessage.textContent = "It's your turn. Shoot the enemy waters!";
 
         computerBoard.classList.remove("disable-pointer-events");
       }, 2);
 
-      printSquares(computerBoard, player.printComputerBoard());
+      printSquares(computerBoard, player.printComputerBoard(), "computer");
     }
   }
 

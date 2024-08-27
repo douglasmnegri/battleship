@@ -150,7 +150,8 @@ button {
   left: 35%;
   width: 30%;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  visibility: visible;
+  /* visibility: visible; */
+  visibility: hidden;
 }
 
 .menu h1 {
@@ -194,10 +195,6 @@ button {
   color: #f2f2f2;
 }
 
-.player-board-menu {
-  position: absolute;
-}
-
 .join-battle {
   width: 80%;
   padding: 10px 0;
@@ -233,6 +230,15 @@ button {
 
 .computer-board-menu,
 .player-board-menu {
-  visibility: hidden;
+  visibility: visible;
+  /* visibility: hidden; */
 }
 
+.placing-ships-menu {
+  border: solid black 5px;
+}
+
+.player-board-menu {
+  position: inherit;
+  /* position: absolute; */
+}
