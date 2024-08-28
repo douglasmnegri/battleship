@@ -1,5 +1,5 @@
 import { printShipInsideBoard } from "./get-board.js";
-// import { initializeGame } from "./game-menu.js";
+import { initializeGame } from "./game-menu.js";
 
 
 const playerBoard = document.getElementById("player-board");
@@ -29,9 +29,9 @@ function getShipsCoordinates() {
 
         printShipInsideBoard(x, y, axisDirection);
         shipLength--;
-        // if(shipLength == 0) {
-        //   initializeGame();
-        // }
+        if(shipLength == 0) {
+          initializeGame();
+        }
       }
     }
     playerBoard.addEventListener("click", getBoardCoordinates);

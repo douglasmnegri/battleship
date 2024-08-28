@@ -7,7 +7,8 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "SPACE FUTURE", sans-serif;
+  font-size: large;
   line-height: 1.6;
   height: 100vh;
   overflow: hidden;
@@ -154,8 +155,8 @@ button {
   left: 35%;
   width: 30%;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  /* visibility: visible; */
-  visibility: hidden;
+  visibility: visible;
+  /* visibility: hidden; */
 }
 
 .menu h1 {
@@ -234,8 +235,8 @@ button {
 
 .computer-board-menu,
 .player-board-menu {
-  visibility: visible;
-  /* visibility: hidden; */
+  /* visibility: visible; */
+  visibility: hidden;
 }
 
 .placing-ships-menu {
@@ -243,23 +244,23 @@ button {
 }
 
 .player-board-menu {
-  position: inherit;
-  /* position: absolute; */
+  /* position: inherit; */
+  position: absolute;
 }
 
 .space {
   background: rgba(128, 0, 128, 0.1) center / 200px 200px round;
-  position: fixed; /* Use fixed to ensure it stays in place even when scrolling */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1; /* Send the background behind other elements */
-  pointer-events: none; /* Prevent the space element from blocking interactions */
+  z-index: -1;
+  pointer-events: none;
 }
 
 .stars1 {
-  animation: space 90s ease-in-out infinite;
+  animation: space 120s ease-in-out infinite;
   background-image: radial-gradient(
       1px 1px at 25px 5px,
       white,
@@ -272,6 +273,7 @@ button {
     radial-gradient(2.5px 2.5px at 110px 80px, white, rgba(255, 255, 255, 0));
 }
 .stars2 {
+  animation: space 240s ease-in-out infinite;
   background-image: radial-gradient(
       1px 1px at 75px 125px,
       white,
