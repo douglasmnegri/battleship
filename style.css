@@ -149,20 +149,21 @@ button {
   text-align: center;
   padding: 20px;
   background-color: #333;
+  width: 90%;
+  max-width: 500px;
   border-radius: 8px;
-  position: absolute;
-  top: 30%;
+  top: 20%;
   left: 35%;
-  width: 30%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 24px 18px 24px rgba(0, 0, 0, 0.3);
   visibility: visible;
-  /* visibility: hidden; */
+  position: absolute;
+  box-sizing: border-box;
+  color: white;
 }
 
 .menu h1 {
   font-size: 36px;
   margin-bottom: 20px;
-  color: #4a90e2;
 }
 
 .get-name {
@@ -171,6 +172,7 @@ button {
   justify-content: center;
 }
 .get-name input[type="text"] {
+  text-align: center;
   width: 100%;
   padding: 10px 0;
   border: none;
@@ -179,6 +181,8 @@ button {
   color: #f2f2f2;
   font-size: 16px;
   font-weight: bold;
+  font-family: "SPACE FUTURE", sans-serif;
+
   transition: border-color 0.1s ease, box-shadow 0.1s ease, font-size 0.1s ease,
     color 0.3s ease;
   margin-bottom: 3em;
@@ -311,4 +315,19 @@ button {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.avatar {
+  margin-bottom: 1.5em;
+}
+.upper-line,
+.bottom-line {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+.alien-icon {
+  width: 5.5em;
+  border: solid black 4px;
 }
