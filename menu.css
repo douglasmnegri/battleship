@@ -1,0 +1,79 @@
+:root {
+    --d: 2500ms;
+    --angle: 90deg;
+    --gradX: 100%;
+    --gradY: 50%;
+    --c1: rgb(71, 78, 183);
+    --c2: rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar {
+    margin-bottom: 1.5em;
+  }
+  
+  .upper-line,
+  .bottom-line {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+  }
+  
+  .alien-icon {
+    width: 5.5em;
+    border: 0.25rem solid black;
+    
+  }
+  
+  .alien-icon-select {
+    border: 0.35rem solid;
+    border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+    animation: borderRotate var(--d) ease-in-out infinite forwards;
+  }
+  
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: true;
+  }
+  
+  @property --gradX {
+    syntax: '<percentage>';
+    initial-value: 50%;
+    inherits: true;
+  }
+  
+  @property --gradY {
+    syntax: '<percentage>';
+    initial-value: 0%;
+    inherits: true;
+  }
+  
+  @keyframes borderRotate {
+    0% {
+      --angle: 90deg;
+    }
+    100% {
+      --angle: 450deg;
+    }
+  }
+  
+  @keyframes borderRadial {
+    0%,
+    100% {
+      --gradX: 100%;
+      --gradY: 50%;
+    }
+    25% {
+      --gradX: 100%;
+      --gradY: 100%;
+    }
+    50% {
+      --gradX: 50%;
+      --gradY: 100%;
+    }
+    75% {
+      --gradX: 0%;
+      --gradY: 50%;
+    }
+  }
+  

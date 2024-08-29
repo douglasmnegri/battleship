@@ -6,8 +6,16 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-bg-color: rgba(128, 0, 128, 0.1);
+  --button-bg-color: rgb(67, 36, 154);
+  --button-hover-color: rgb(46, 12, 138);
+  --main-font: "SPACE FUTURE", sans-serif;
+  --main-light-font: "SPACE FUTURE LIGHT", sans-serif;
+}
+
 body {
-  font-family: "SPACE FUTURE", sans-serif;
+  font-family: var(--main-light-font);
   font-size: large;
   line-height: 1.6;
   height: 100vh;
@@ -33,11 +41,6 @@ h6 {
   font-weight: 600;
 }
 
-a {
-  color: #3498db;
-  text-decoration: none;
-}
-
 a:hover {
   text-decoration: underline;
 }
@@ -51,7 +54,8 @@ ul li {
 }
 
 button {
-  background-color: #3498db;
+  background-color: var(--button-bg-color);
+  font: var(--main-font);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -147,38 +151,51 @@ button {
 
 .menu {
   text-align: center;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
   background-color: #333;
   width: 90%;
   max-width: 500px;
-  border-radius: 8px;
-  top: 20%;
-  left: 35%;
-  box-shadow: 24px 18px 24px rgba(0, 0, 0, 0.3);
   visibility: visible;
   position: absolute;
   box-sizing: border-box;
   color: white;
+
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.menu-title p:first-child {
+  font-size: 54px;
+  font-family: var(--main-font);
+}
 .menu h1 {
   font-size: 36px;
-  margin-bottom: 20px;
+  position: relative;
+  top: -30px;
+  font-family: var(--main-light-font);
 }
 
 .get-name {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
+
 .get-name input[type="text"] {
   text-align: center;
   width: 100%;
   padding: 10px 0;
   border: none;
-  border-bottom: 2px solid #555;
+  border-bottom: 2px solid #ffffff;
   background-color: transparent;
-  color: #f2f2f2;
+  color: #ffffff;
   font-size: 16px;
   font-weight: bold;
   font-family: "SPACE FUTURE", sans-serif;
@@ -189,7 +206,7 @@ button {
 }
 
 .get-name input[type="text"]::placeholder {
-  color: #aaaaaa;
+  color: #ffffff;
   transition: color 0.3s ease;
 }
 
@@ -207,17 +224,17 @@ button {
 .join-battle {
   width: 80%;
   padding: 10px 0;
-  background-color: #4a90e2;
   color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bolder;
   cursor: pointer;
   transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
 .join-battle:hover {
-  background-color: #bfbfbf;
+  background-color: var(--button-hover-color);
   transform: scale(1.05);
 }
 
@@ -315,19 +332,4 @@ button {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.avatar {
-  margin-bottom: 1.5em;
-}
-.upper-line,
-.bottom-line {
-  display: flex;
-  justify-content: center;
-  gap: 2em;
-}
-
-.alien-icon {
-  width: 5.5em;
-  border: solid black 4px;
 }
