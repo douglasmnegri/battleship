@@ -26,7 +26,10 @@ function getShipsCoordinates() {
         const x = parseInt(e.target.dataset.row);
         const y = parseInt(e.target.dataset.col);
 
-        printShipInsideBoard(x, y, axisDirection);
+        if (printShipInsideBoard(x, y, axisDirection) == false) {
+          return;
+        }
+
         shipLength--;
         if (shipLength == 0) {
           axisButton.style.visibility = "hidden";

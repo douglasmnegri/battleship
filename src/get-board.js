@@ -22,7 +22,8 @@ function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
     shipDirection
   );
   if (playerBoardContent == undefined) {
-    return alert("Those coordinates are unavailable");
+    alert("Those coordinates are unavailable");
+    return false;
   } else {
     printSquares(playerBoard, playerBoardContent, "player");
   }

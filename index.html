@@ -28,7 +28,8 @@
             type="text"
             name="name"
             id="name"
-            placeholder="Almirant's Name"
+            placeholder="Admiral's Name"
+            required
           />
           <div class="avatar">
             <div class="upper-line">
@@ -37,6 +38,7 @@
                   src="./images/alien0.png"
                   alt="alien avatar"
                   class="alien-icon"
+                  id="alien0"
                 />
               </div>
               <div>
@@ -44,6 +46,7 @@
                   src="./images/alien1.png"
                   alt="alien avatar"
                   class="alien-icon"
+                  id="alien1"
                 />
               </div>
               <div>
@@ -51,6 +54,7 @@
                   src="./images/alien2.png"
                   alt="alien avatar"
                   class="alien-icon"
+                  id="alien2"
                 />
               </div>
             </div>
@@ -60,6 +64,7 @@
                   src="./images/alien3.png"
                   alt="alien avatar"
                   class="alien-icon"
+                  id="alien3"
                 />
               </div>
               <div>
@@ -67,6 +72,7 @@
                   src="./images/alien4.png"
                   alt="alien avatar"
                   class="alien-icon"
+                  id="alien4"
                 />
               </div>
             </div>
@@ -76,11 +82,11 @@
       </div>
     </div>
 
-    <div id="hud-interface">It's your turn. Shoot the enemy waters!</div>
+    <div id="hud-interface" hidden>It's your turn. Shoot the enemy waters!</div>
 
     <div class="game-interface">
       <div class="board-container player-board-menu placing-ships-menu">
-        <h2 id="p1">Player's Position</h2>
+        <h2 id="p1">HOME GALAXY</h2>
         <div class="player-content">
           <ul class="board-letters">
             <li>A</li>
@@ -108,13 +114,22 @@
           </ul>
           <div id="player-board"></div>
         </div>
+        <div class="char-container">
+          <div class="char-text">
+            <img
+              src="./images/alien4.png"
+              alt="alien avatar"
+            />
+            <p>PLACE YOUR SHIPS ADMIRAL</p>
+          </div>
+        </div>
         <div class="axis-container">
           <button id="axis">Axis: X</button>
         </div>
       </div>
 
       <div class="board-container computer-board-menu">
-        <h2 id="p2">Computer's Board</h2>
+        <h2 id="p2">INVADER GALAXY</h2>
         <div class="computer-content">
           <ul class="board-letters">
             <li>A</li>
@@ -142,6 +157,15 @@
           </ul>
           <div id="computer-board"></div>
         </div>
+        <!-- <div class="char-text">
+          <img
+            src="./images/alien4.png"
+            alt="alien avatar"
+            class="alien-icon"
+            id="alien4"
+          />
+          <p>Place your space ships almirant</p>
+        </div> -->
       </div>
     </div>
 

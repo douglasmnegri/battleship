@@ -36,7 +36,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   line-height: 1.2;
   font-weight: 600;
 }
@@ -73,7 +73,7 @@ button {
 .game-interface {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 5em;
+  margin-top: 7em;
 }
 
 #p1,
@@ -84,14 +84,12 @@ button {
 
 .player-content,
 .computer-content {
-  /* border: solid black 3px; */
   display: grid;
   grid-template-columns: 1fr 12fr;
   grid-template-rows: 1fr 12fr;
   width: fit-content;
   height: fit-content;
   padding: 1em;
-  margin: 1em;
   color: white;
 }
 
@@ -260,8 +258,6 @@ button {
   visibility: hidden;
 }
 
-
-
 .player-board-menu {
   /* position: inherit; */
   position: absolute;
@@ -330,4 +326,26 @@ button {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.char-container {
+  display: grid;
+  grid-template-columns: 0.2fr 3fr 0.1fr;
+  visibility: hidden;
+  position: inherit;
+}
+
+.char-text {
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: larger;
+  gap: 1em;
+  font-family: var(--main-font);
+}
+
+.char-text img {
+  width: 5.5em;
+  border-radius: 5em;
 }
