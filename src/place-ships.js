@@ -1,15 +1,14 @@
 import { printShipInsideBoard } from "./get-board.js";
 import { initializeGame } from "./game-menu.js";
 
-
 const playerBoard = document.getElementById("player-board");
 
 function getShipsCoordinates() {
   let axisDirection = "v";
   let shipLength = 5;
+  const axisButton = document.getElementById("axis");
 
   function setupAxisToggle() {
-    const axisButton = document.getElementById("axis");
     axisButton.addEventListener("click", () => {
       if (axisDirection === "v") {
         axisDirection = "h";
@@ -29,7 +28,8 @@ function getShipsCoordinates() {
 
         printShipInsideBoard(x, y, axisDirection);
         shipLength--;
-        if(shipLength == 0) {
+        if (shipLength == 0) {
+          axisButton.style.visibility = "hidden";
           initializeGame();
         }
       }
@@ -90,5 +90,3 @@ function getShipsCoordinates() {
 }
 
 getShipsCoordinates();
-
-

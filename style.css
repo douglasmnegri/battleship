@@ -84,7 +84,7 @@ button {
 
 .player-content,
 .computer-content {
-  border: solid black 3px;
+  /* border: solid black 3px; */
   display: grid;
   grid-template-columns: 1fr 12fr;
   grid-template-rows: 1fr 12fr;
@@ -260,9 +260,7 @@ button {
   visibility: hidden;
 }
 
-.placing-ships-menu {
-  border: solid black 5px;
-}
+
 
 .player-board-menu {
   /* position: inherit; */
