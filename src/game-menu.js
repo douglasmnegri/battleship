@@ -7,7 +7,9 @@ const playerBoardMenu = document.querySelector(".player-board-menu");
 const icon = document.querySelectorAll(".alien-icon");
 const charTxt = document.querySelector(".char-text");
 const charImg = document.querySelector(".char-text img");
+const opponentAvatar = document.getElementById("opponent-avatar");
 let playerAvatar = "";
+let computerAvatar = "";
 
 function getPlayerName() {
   joinBattle.addEventListener("click", (e) => {
@@ -16,6 +18,7 @@ function getPlayerName() {
       playerBoardMenu.style.visibility = "visible";
       menu.style.visibility = "hidden";
       charImg.src = `./images/${playerAvatar}.png`;
+      opponentAvatar.src = `./images/${computerAvatar}.png`;
 
       printPlayerBoard();
     } else {
@@ -40,8 +43,11 @@ function chooseAvatar() {
       icon.forEach((av) => av.classList.remove("alien-icon-select"));
       avatar.classList.add("alien-icon-select");
       playerAvatar = avatar.id;
+      computerAvatar = `alien${
+        parseInt(playerAvatar[playerAvatar.length - 1]) + 1
+      }`;
 
-      console.log(playerAvatar);
+      if (computerAvatar == "alien5") computerAvatar = "alien0";
     });
   });
 }

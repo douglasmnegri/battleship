@@ -335,6 +335,26 @@ button {
   position: inherit;
 }
 
+.opponent-char-container {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: 2.5fr 5fr 0.5fr;
+  position: inherit;
+}
+
+.char-container,
+.opponent-char-container {
+  margin-top: 1em;
+  text-align: center;
+  
+}
+
+.char-container p,
+.opponent-char-container p {
+  border: solid black 2px;
+  background-color: black;
+  box-shadow: 0 18px 25px 0 rgba(0, 0, 0, 0.37);
+}
 .char-text {
   grid-column: 2 / 3;
   display: flex;

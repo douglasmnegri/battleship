@@ -1,0 +1,40 @@
+.part1 {
+  background-image: url("./images/ship/ship1.png");
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.part2 {
+  background-image: url("./images/ship/ship2.png");
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.part3 {
+  background-image: url("./images/ship/ship3.png");
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.part4 {
+  background-image: url("./images/ship/ship4.png");
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.part5 {
+  background-image: url("./images/ship/ship5.png");
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.ship-design {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+}

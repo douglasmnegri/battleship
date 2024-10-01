@@ -26,6 +26,7 @@ function printShipInsideBoard(coordinateX, coordinateY, shipDirection) {
     return false;
   } else {
     printSquares(playerBoard, playerBoardContent, "player");
+    console.log(playerBoard);
   }
 
   if (!printSquares(computerBoard, computerBoardContent)) {
@@ -50,7 +51,15 @@ function printSquares(board, content, player) {
       }
 
       if (player == "player") {
-        square.textContent = content[i][j];
+        if(content[i][j] == "S") {
+          let shipImg = document.createElement("img");
+          shipImg.classList.add("ship-design");
+          shipImg.setAttribute("src", `/images/ship/ship${i}.png`);
+          square.appendChild(shipImg);
+        } else {
+          square.textContent = "*";
+        }
+        // square.textContent = content[i][j];
       }
       square.dataset.row = i;
       square.dataset.col = j;
